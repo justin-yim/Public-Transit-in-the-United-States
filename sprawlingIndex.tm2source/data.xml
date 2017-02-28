@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+
+<Parameters>
+  <Parameter name="attribution"><![CDATA[CC BY-SA]]></Parameter>
+  <Parameter name="center">-97.7344,36.0313,3</Parameter>
+  <Parameter name="description"><![CDATA[Sprawling Index 2014]]></Parameter>
+  <Parameter name="format">pbf</Parameter>
+  <Parameter name="json"><![CDATA[{"vector_layers":[{"id":"Sprawling_AutoDependencyUSA","description":"Sprawling Index 2014","fields":{"ALAND":"Number","AWATER":"Number","CBSAFP":"String","CSAFP":"String","GEOID":"String","INTPTLAT":"String","INTPTLON":"String","LSAD":"String","MEMI":"String","MTFCC":"String","NAME":"String","NAMELSAD":"String","POP_2015":"String","_MSAc_Code":"String","_Name":"String","_composite":"String","composite":"Number"}}]}]]></Parameter>
+  <Parameter name="maxzoom">16</Parameter>
+  <Parameter name="minzoom">0</Parameter>
+  <Parameter name="name"><![CDATA[Sprawling Index 2014]]></Parameter>
+</Parameters>
+
+
+<Layer name="Sprawling_AutoDependencyUSA"
+  buffer-size="16"
+  srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Users/justinyim/Downloads/Project 2 - Automobile Dependency/Sprawling_AutoDependencyUSA.geojson]]></Parameter>
+       <Parameter name="layer"><![CDATA[Sprawling_AutoDependencyUSA]]></Parameter>
+       <Parameter name="type"><![CDATA[geojson]]></Parameter>
+    </Datasource>
+  </Layer>
+
+</Map>

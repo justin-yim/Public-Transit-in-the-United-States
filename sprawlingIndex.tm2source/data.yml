@@ -1,0 +1,43 @@
+_prefs: 
+  disabled: []
+  inspector: false
+  mapid: justyim.a93b1d8f
+  rev: s-bd6e7ab6
+  saveCenter: true
+attribution: CC BY-SA
+center: 
+  - -97.7344
+  - 36.0313
+  - 3
+description: Sprawling Index 2014
+Layer: 
+  - id: Sprawling_AutoDependencyUSA
+    Datasource: 
+      file: /Users/justinyim/Downloads/Project 2 - Automobile Dependency/Sprawling_AutoDependencyUSA.geojson
+      layer: Sprawling_AutoDependencyUSA
+      type: geojson
+    description: Sprawling Index 2014
+    fields: 
+      _composite: String
+      _MSAc_Code: String
+      _Name: String
+      ALAND: Number
+      AWATER: Number
+      CBSAFP: String
+      composite: Number
+      CSAFP: String
+      GEOID: String
+      INTPTLAT: String
+      INTPTLON: String
+      LSAD: String
+      MEMI: String
+      MTFCC: String
+      NAME: String
+      NAMELSAD: String
+      POP_2015: String
+    properties: 
+      "buffer-size": 16
+    srs: +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs
+maxzoom: 16
+minzoom: 0
+name: Sprawling Index 2014

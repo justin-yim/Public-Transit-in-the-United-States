@@ -98,11 +98,11 @@
 <div id='map'></div>
 
 <script>
-mapboxgl.accessToken = 'pk.eyJ1IjoianVzdHlpbSIsImEiOiJjaXptN2VpY3YwMmphMndscmg2d2Y4M2M1In0.KOILUPIEyPHwVeqJDRVrCQ';
+mapboxgl.accessToken = 'pk.eyJ1IjoianVzdHlpbSIsImEiOiJjaXVoNXB1YncwMDN5MnlxbDczbTc0YTRtIn0.LwgmMbs0c0grWfA2-oXD0Q';
 var map = new mapboxgl.Map({
     container: 'map', // container id
-    style: 'mapbox://styles/justyim/ciznj9kjb002q2rqkw8c7nbs1', //hosted style id
-    center: [-97.38, 39], // starting position
+    style: 'mapbox://styles/justyim/cizomgoof004c2snys85ntmjs', //hosted style id
+    center: [-97.7344, 36.0313], // starting position
     zoom: 3 // starting zoom
 });
 	
@@ -112,11 +112,11 @@ map.addControl(new mapboxgl.NavigationControl());
 	map.on('load', function () {
     map.addSource('museums', {
         type: 'vector',
-        url: 'mapbox://mapbox.2opop9hr'
+        url: 'mapbox://justyim.a93b1d8f'
     });
     map.addLayer({
         'id': 'museums',
-        'type': 'circle',
+        'type': 'fill',
         'source': 'museums',
         'layout': {
             'visibility': 'visible'
@@ -125,7 +125,7 @@ map.addControl(new mapboxgl.NavigationControl());
             'circle-radius': 8,
             'circle-color': 'rgba(55,148,179,1)'
         },
-        'source-layer': 'museum-cusco'
+        'source-layer': 'Sprawling_AutoDependencyUSA'
     });
 
     map.addSource('contours', {
