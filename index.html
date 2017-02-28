@@ -5,7 +5,7 @@
     <title></title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.js'></script>
-    <link rel="stylesheet" type="text/css" href="css/style.css/">
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.css' rel='stylesheet' />
     <style>
         body { margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -184,43 +184,6 @@ map.addControl(new mapboxgl.NavigationControl());
 	
 	map.on('load', function () {
     var layers = ['25_to_49', '49_to_68', '68_to_79', '79_to_89', '89_to_100', '100', '100_to_118', '118_to_130', '130_to_150', '150_to_203'];
-		map.addSource('museums', {
-        type: 'vector',
-        url: 'mapbox://justyim.a93b1d8f'
-    });
-    map.addLayer({
-        'id': 'museums',
-        'type': 'fill',
-        'source': 'museums',
-        'layout': {
-            'visibility': 'visible'
-        },
-        'paint': {
-            'circle-radius': 8,
-            'circle-color': 'rgba(55,148,179,1)'
-        },
-        'source-layer': 'Sprawling_AutoDependencyUSA'
-    });
-
-    map.addSource('contours', {
-        type: 'vector',
-        url: 'mapbox://mapbox.mapbox-terrain-v2'
-    });
-    map.addLayer({
-        'id': 'contours',
-        'type': 'line',
-        'source': 'contours',
-        'source-layer': 'contour',
-        'layout': {
-            'visibility': 'visible',
-            'line-join': 'round',
-            'line-cap': 'round'
-        },
-        'paint': {
-            'line-color': '#877b59',
-            'line-width': 1
-        }
-    });
 });
 
 var toggleableLayerIds = [ 'contours', 'museums' ];
