@@ -1,2 +1,2 @@
-# USMultiModalTransportation
-Data visualisation about Multi-modal Transportation in the United States
+# PublicTransitintheUnitedStates
+Data visualisation about Public Transit in-the United States
