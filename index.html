@@ -2,221 +2,137 @@
 <html>
 <head>
     <meta charset='utf-8' />
-    <title></title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.css' rel='stylesheet' />
-    <style>
-        body { margin:0; padding:0; }
-        #map { position:absolute; top:0; bottom:0; width:100%; }
-    </style>
+    <title>Public Transit in the United States</title>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.33.1/mapbox-gl.css' rel='stylesheet' />
+	<style>
+	/* LAYOUT */
+
+	body {
+		margin:0;
+		font: 12px Helvetica Neue;
+		font-weight: bold;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	#header {
+    	height: 50px;
+    	box-sizing: border-box;
+    	padding-top: 0px;
+    	padding-right: 30px;
+    	padding-bottom: 110px;
+    	padding-left: 80px;
+    	border-style: solid;
+    	border-width: 20px 0px 1px 0px;
+	}
+
+	.container{
+		margin:auto;
+		width: 100%;
+		left:0px;
+	}
+
+	#title{
+		font-size: 65px;
+		font-family: "Helvetica Neue", sans-serif;
+		color: #000000; 
+	}
+
+	#subtitle{
+		font-size: 20px;
+	}
+		
+	#sidebar-left{
+		float: left;
+		width:18%;
+		padding-left:40px;
+	}
+
+	.map {
+		position: absolute;
+		left: 19%;
+		width: 65%;
+		top: 131px;
+		bottom: 0;
+		border-style: solid;
+		border-width: 0px 1px 0px 1px;
+	}
+		
+	#sidebar-right{
+		float: right;
+		width:17%;
+	}
+	/* NAV */
+
+	ul{
+	}
+
+	li {
+		list-style: none;
+		/* display: inline-block; */
+		color: dimgrey;
+	}
+	</style>
 </head>
+
 <body>
 
-<style>
-    #menu {
-        background: #fff;
-        position: absolute;
-        z-index: 1;
-        top: 12px;
-		bottom: 0px
-        right: 90px;
-        border-radius: 3px;
-        width: 120px;
-        border: 1px solid rgba(0,0,0,0.4);
-        font-family: 'Open Sans', sans-serif;
-    }
+<!--HEADER-->
 
-    #menu a {
-        font-size: 13px;
-        color: #404040;
-        display: block;
-        margin: 0;
-        padding: 0;
-        padding: 10px;
-        text-decoration: none;
-        border-bottom: 1px solid rgba(0,0,0,0.25);
-        text-align: center;
-    }
+<div id="header">
+    <div class="container">
+    	<span id="title">Public Transit in the United States</span><br>
+    	<span id="subtitle">An overview on ridership, mode share and funding statistics</span></p>
+	</div>
+</div>
 
-    #menu a:last-child {
-        border: none;
-    }
-
-    #menu a:hover {
-        background-color: #f8f8f8;
-        color: #404040;
-    }
-
-    #menu a.active {
-        background-color: #fff;
-        color: #404040;
-    }
-
-    #menu a.active:hover {
-        background: #f3f3f3;
-    }
+<!-- LEFT --> 
+  <div id="sidebar-left">	
+ 	<ul>
+  		<br>
+  		<li><a href="#" style="font-size:14px">About</a></li>
+  		<br>
+  		<li><a href="#" style="font-size:14px">Ridership in Public Transit</a></li>
+  		<br>
+  		<li><a href="#" style="font-size:14px">Mode Share</a></li>
+  		<br>
+  		<li><a href="#" style="font-size:14px">Help</a></li>
+  		<br>
+  		<li><a href="#" style="font-size:14px">Sources</a></li>
+  	</ul>
+  </div>
 	
-	.my-legend .legend-title {
-    text-align: left;
-    margin-bottom: 6px;
-    font-weight: bold;
-    font-size: 90%;
-    }
-  .my-legend .legend-scale ul {
-    margin: 0;
-    padding: 0;
-    float: left;
-    list-style: none;
-    }
-  .my-legend .legend-scale ul li {
-    display: block;
-    float: left;
-    width: 28px;
-    margin-bottom: 3px;
-    text-align: center;
-    font-size: 85%;
-    list-style: none;
-    }
-  .my-legend ul.legend-labels li span {
-    display: block;
-    float: left;
-    height: 14px;
-    width: 28px;
-    }
-  .my-legend .legend-source {
-    font-size: 70%;
-    color: #999;
-    clear: both;
-    }
-  .my-legend a {
-    color: #777;
-    }
+<!-- MIDDLE -->
+  <div id='map' class='map'>
+  	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.33.1/mapbox-gl.js'></script>
+  </div>
 	
-	body {
-  margin: 0;
-  padding: 0;
-}
-
-h2,
-h3 {
-  margin: 10px;
-  font-size: 1.2em;
-}
-
-h3 {
-  font-size: 1em;
-}
-
-p {
-  font-size: 0.85em;
-  margin: 10px;
-  text-align: left;
-}
-
-/**
-* Create a position for the map
-* on the page */
-#map {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-}
-
-/**
-* Set rules for how the map overlays
-* (info box and legend) will be displayed
-* on the page. */
-.map-overlay {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background: rgba(255, 255, 255, 0.8);
-  margin-right: 50px;
-  font-family: Arial, sans-serif;
-  overflow: auto;
-  border-radius: 3px;
-}
-
-#features {
-  top: 0;
-  height: 120px;
-  margin-top: 20px;
-  width: 350px;
-}
-
-#legend {
-  padding: 10px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  line-height: 18px;
-  height: 150px;
-  margin-bottom: 40px;
-  width: 100px;
-}
-
-.legend-key {
-  display: inline-block;
-  border-radius: 20%;
-  width: 10px;
-  height: 10px;
-  margin-right: 5px;
-}
-	
-</style>
-
-<nav id="menu"></nav>
-<div id='map'></div>
-<div class='map-overlay' id='features'><h2>Level of sprawling in selected Metropolitan Areas in the United States</h2><div id='pd'><p>Hover over a colored area!</p></div></div>
-<div class='map-overlay' id='legend'></div>
+<!-- RIGHT --> 
+  <div id="sidebar-right">
+  	<ul>
+  		<br>
+  		<li><a href="#" style="font-size:14px"></a></li>
+  	</ul>
+  </div>
+  
+<!-- FOOTER -->
+  <div id="footer">	
+  </div>
+ 
+</body>
 
 <script>
-mapboxgl.accessToken = 'pk.eyJ1IjoianVzdHlpbSIsImEiOiJjaXptN2VpY3YwMmphMndscmg2d2Y4M2M1In0.KOILUPIEyPHwVeqJDRVrCQ';
+	mapboxgl.accessToken = 'pk.eyJ1IjoianVzdHlpbSIsImEiOiJjaXptN2VpY3YwMmphMndscmg2d2Y4M2M1In0.KOILUPIEyPHwVeqJDRVrCQ';
+// This adds the map to your page
 var map = new mapboxgl.Map({
-    container: 'map', // container id
-    style: 'mapbox://styles/justyim/cizomgoof004c2snys85ntmjs', //hosted style id
-    center: [-97.7344, 36.0313], // starting position
-    zoom: 3 // starting zoom
+  // container id specified in the HTML
+  container: 'map',
+  // style URL
+  style: 'mapbox://styles/justyim/cj07g1nps00042sn2wwlczxdb',
+  // initial position in [long, lat] format
+  center: [-97.7344, 38],
+  // initial zoom
+  zoom: 3
 });
-	
-	// Add zoom and rotation controls to the map.
-map.addControl(new mapboxgl.NavigationControl());
-	
-	map.on('load', function () {
-    var layers = ['25_to_49', '49_to_68', '68_to_79', '79_to_89', '89_to_100', '100', '100_to_118', '118_to_130', '130_to_150', '150_to_203'];
-});
-
-var toggleableLayerIds = [ 'contours', 'museums' ];
-
-for (var i = 0; i < toggleableLayerIds.length; i++) {
-    var id = toggleableLayerIds[i];
-
-    var link = document.createElement('a');
-    link.href = '#';
-    link.className = 'active';
-    link.textContent = id;
-
-    link.onclick = function (e) {
-        var clickedLayer = this.textContent;
-        e.preventDefault();
-        e.stopPropagation();
-
-        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
-
-        if (visibility === 'visible') {
-            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-            this.className = '';
-        } else {
-            this.className = 'active';
-            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-        }
-    };
-
-    var layers = document.getElementById('menu');
-    layers.appendChild(link);
-}	
-	
 </script>
 
-</body>
 </html>
