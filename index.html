@@ -6,14 +6,14 @@
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.33.1/mapbox-gl.css' rel='stylesheet' />
 	<style>
 	/* LAYOUT */
-
+		
 	body {
 		margin:0;
 		font: 12px Helvetica Neue;
 		font-weight: bold;
 		-webkit-font-smoothing: antialiased;
 	}
-
+		
 	#header {
     	height: 50px;
     	box-sizing: border-box;
@@ -30,16 +30,6 @@
 		width: 100%;
 		left:0px;
 	}
-
-	#title{
-		font-size: 65px;
-		font-family: "Helvetica Neue", sans-serif;
-		color: #000000; 
-	}
-
-	#subtitle{
-		font-size: 20px;
-	}
 		
 	#sidebar-left{
 		float: left;
@@ -53,14 +43,36 @@
 		width: 65%;
 		top: 131px;
 		bottom: 0;
-		border-style: solid;
-		border-width: 0px 1px 0px 1px;
+		/*border-style: solid;*/
+		/*border-width: 0px 1px 0px 1px;*/
 	}
 		
 	#sidebar-right{
 		float: right;
 		width:17%;
 	}
+	/* TEXT */
+	#title{
+		font-size: 65px;
+		font-family: "Helvetica Neue", sans-serif;
+		color: #000000; 
+	}
+
+	#subtitle{
+		font-size: 20px;
+	}
+		
+	a:visited, a:link{ 
+    	color: #000000;
+    	text-decoration: none;
+    	cursor: auto;
+	}
+	a:active, a:hover{ 
+    	color: #d25c4d;
+    	text-decoration: underline;
+    	cursor: auto;
+	}
+	
 	/* NAV */
 
 	ul{
@@ -91,7 +103,7 @@
   		<br>
   		<li><a href="#" style="font-size:14px">About</a></li>
   		<br>
-  		<li><a href="#" style="font-size:14px">Ridership in Public Transit</a></li>
+  		<li><a href="#" style="font-size:14px">Public Transit Ridership</a></li>
   		<br>
   		<li><a href="#" style="font-size:14px">Mode Share</a></li>
   		<br>
@@ -121,7 +133,7 @@
 </body>
 
 <script>
-	mapboxgl.accessToken = 'pk.eyJ1IjoianVzdHlpbSIsImEiOiJjaXptN2VpY3YwMmphMndscmg2d2Y4M2M1In0.KOILUPIEyPHwVeqJDRVrCQ';
+mapboxgl.accessToken = 'pk.eyJ1IjoianVzdHlpbSIsImEiOiJjaXVoNXB1YncwMDN5MnlxbDczbTc0YTRtIn0.LwgmMbs0c0grWfA2-oXD0Q';
 // This adds the map to your page
 var map = new mapboxgl.Map({
   // container id specified in the HTML
@@ -133,6 +145,9 @@ var map = new mapboxgl.Map({
   // initial zoom
   zoom: 3
 });
+	
+// Add zoom and rotation controls to the map.
+map.addControl(new mapboxgl.NavigationControl());
 </script>
 
 </html>
