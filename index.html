@@ -36,7 +36,7 @@
 		width:18%;
 		padding-left:40px;
 	}
-
+		
 	.map {
 		position: absolute;
 		left: 19%;
@@ -49,8 +49,35 @@
 		
 	#sidebar-right{
 		float: right;
-		width:20%;
+		width:20.5%;
+		font-size: 20px;
 	}
+	
+	#legend{
+		font-size:14px;
+  		line-height: 18px;
+	}
+		
+	#pd{
+		font-size:14px;
+	}
+		
+	.legend{
+		position: fixed;
+    	bottom: 20px;
+    	right: 3.59%;
+    	width: 200px;
+    	background-color: rgba(255, 255, 255, 0.8);
+	}	
+		
+	.legend-key {
+  		display: inline-block;
+  		border-radius: 20%;
+  		width: 10px;
+ 		height: 10px;
+  		margin-right: 5px;
+	}	
+		
 	/* TEXT */
 	#title{
 		font-size: 65px;
@@ -60,6 +87,14 @@
 
 	#subtitle{
 		font-size: 20px;
+	}
+
+	#page-title{
+		font-size:18px;	
+	}
+		
+	#content-right{
+		font-size:12px;	
 	}
 		
 	a:visited, a:link{ 
@@ -81,7 +116,6 @@
 	li {
 		list-style: none;
 		/* display: inline-block; */
-		color: dimgrey;
 	}
 	</style>
 </head>
@@ -101,7 +135,7 @@
   <div id="sidebar-left">	
  	<ul>
   		<br>
-  		<li><a href="#" style="font-size:14px">About</a></li>
+  		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/about.html" style="font-size:14px">About</a></li>
   		<br>
   		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/" style="font-size:14px">Ridership & Funding</a></li>
   		<br>
@@ -109,9 +143,9 @@
   		<br>
   		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/sprawling.html" style="font-size:14px">Sprawling Index</a></li>
   		<br>
-  		<li><a href="#" style="font-size:14px">Help</a></li>
+  		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/help.html" style="font-size:14px">Help</a></li>
   		<br>
-  		<li><a href="#" style="font-size:14px">Sources</a></li>
+  		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/sources.html" style="font-size:14px">Sources</a></li>
   	</ul>
   </div>
 	
@@ -123,14 +157,14 @@
 <!-- RIGHT --> 
   <div id="sidebar-right">
   	<ul>
-  		<br>
-  		<li><a href="#" style="font-size:14px"></a></li>
+		<span id="page-title">Sprawling Index 2014</span>
+		<br><a href="#" id="content-right"><em>What is Sprawling Index?</em></a><br><br>
+  		<div id='pd' style="font-size:14px"></div>
   	</ul>
   </div>
+  <div class="legend" id='legend'></div>
   
 <!-- FOOTER -->
-  <div id="footer">	
-  </div>
  
 </body>
 
@@ -141,7 +175,7 @@ var map = new mapboxgl.Map({
   // container id specified in the HTML
   container: 'map',
   // style URL
-  style: 'mapbox://styles/justyim/cj07g1nps00042sn2wwlczxdb',
+  style: 'mapbox://styles/justyim/cj0ipqy0s006n2sqpod646p0u',
   // initial position in [long, lat] format
   center: [-96.7344, 38],
   // initial zoom
@@ -150,6 +184,36 @@ var map = new mapboxgl.Map({
 	
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
+	
+map.on('load', function() {
+  var layers = ['25-49', '49-68', '68-79', '79-89', '89-100', '100-109', '109-118', '118-130', '130-150', '150-203'];
+	layers.forEach(function(layer) {
+	  var color = map.getPaintProperty(layer, 'fill-color');
+	  var item = document.createElement('div');
+	  var key = document.createElement('span');
+	  key.className = 'legend-key';
+	  key.style.backgroundColor = color;
+
+	  var value = document.createElement('span');
+	  value.innerHTML = layer;
+	  item.appendChild(key);
+	  item.appendChild(value);
+	  legend.appendChild(item);
+	});
+	
+	map.on('mousemove', function(e) {
+  var states = map.queryRenderedFeatures(e.point, {
+    layers: layers
+  });
+
+  if (states.length > 0) {
+    document.getElementById('pd').innerHTML ='<h3><strong>' + states[0].properties._Name + '</strong></h3><p><strong>' + 'Sprawling Index: </strong>' + states[0].properties._composite + '</p><p><strong>' + 'Population (2015): </strong>' + states[0].properties.POP_2015;
+  } else {
+    document.getElementById('pd').innerHTML = '<p>Hover over a colored area</p>';
+  }
+});
+});	
+	
 </script>
 
 </html>
