@@ -1,0 +1,58 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* LAYOUT */
+
+body {
+	margin:0;
+	font: 12px Helvetica Neue;
+	-webkit-font-smoothing: antialiased;
+}
+
+#header {
+	height:50px;
+    box-sizing: border-box;
+	padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 75px;
+    padding-left: 80px;
+}
+		
+.container{
+	margin:auto;
+	width: 100%;
+	left:0px;
+}
+
+#title{
+	font-size: 28px;
+	font-family: "Helvetica Neue", sans-serif;
+	font-weight: bold;
+	color: #d25c4d; 
+}
+
+#sidebar-left{
+	float: left;
+	width:18%;
+}
+
+.map {
+    position: absolute;
+    left: 18%;
+    width: 82%;
+    top: 124px;
+    bottom: 0;
+}
+
+/* NAV */
+
+ul{
+	padding-top:10px;
+	padding-left:80px;
+}
+
+li {
+	list-style: none;
+	/* display: inline-block; */
+	color: dimgrey;
+}

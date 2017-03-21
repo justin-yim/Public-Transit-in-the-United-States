@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="An overview on United States's public transit ridership, mode share and funding statistics">
+  	<meta name="keywords" content="public transit, mass transit, ridership, public transportation, TOD, transit-oriented development, car-oriented, sprawling, data visualization, data viz,infographic, interactive, mapbox, information is beautiful">
+  	<meta name="author" content="Justin Yim">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Transit in the United States</title>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.33.1/mapbox-gl.css" rel="stylesheet" />
+    <link rel="canonical" href="https://justin-yim.github.io/Public-Transit-in-the-United-States/index.html"/>
+	<style>
+	/* LAYOUT */
+		
+	body {
+		margin:0;
+		font: 12px Helvetica Neue;
+		font-weight: bold;
+		-webkit-font-smoothing: antialiased;
+	}
+		
+	#header {
+    	height: 50px;
+    	box-sizing: border-box;
+    	padding-top: 0px;
+    	padding-right: 30px;
+    	padding-bottom: 110px;
+    	padding-left: 80px;
+    	border-style: solid;
+    	border-width: 20px 0px 1px 0px;
+	}
+
+	.container{
+		margin:auto;
+		width: 100%;
+		left:0px;
+	}
+		
+	#sidebar-left{
+		float: left;
+		width:18%;
+		padding-left:40px;
+	}
+		
+	.map {
+		position: absolute;
+		left: 19%;
+		width: 61%;
+		top: 131px;
+		bottom: 0;
+		/*border-style: solid;*/
+		/*border-width: 0px 1px 0px 1px;*/
+	}
+		
+	#sidebar-right{
+		float: right;
+		width:20.5%;
+		font-size: 16px;
+	}
+	
+	#legend{
+		font-size:14px;
+  		line-height: 18px;
+	}
+		
+	#pd{
+		font-size:14px;
+	}
+		
+	.legend{
+		position: fixed;
+    	bottom: 20px;
+    	right: 3.59%;
+    	width: 200px;
+    	background-color: rgba(255, 255, 255, 0.8);
+	}	
+		
+	.legend-key {
+  		display: inline-block;
+  		border-radius: 20%;
+  		width: 10px;
+ 		height: 10px;
+  		margin-right: 5px;
+	}	
+		
+	/* TEXT */
+	#title{
+		font-size: 65px;
+		font-family: "Helvetica Neue", sans-serif;
+		color: #000000; 
+	}
+
+	#subtitle{
+		font-size: 20px;
+	}
+
+	#page-title{
+		font-size:18px;	
+	}
+		
+	#content-right{
+		font-size:12px;	
+	}
+		
+	a:visited, a:link{ 
+    	color: #000000;
+    	text-decoration: none;
+    	cursor: auto;
+	}
+	a:active, a:hover{ 
+    	color: #d25c4d;
+    	text-decoration: underline;
+    	cursor: auto;
+	}
+	
+	/* NAV */
+
+	ul{
+	}
+
+	li {
+		list-style: none;
+		/* display: inline-block; */
+	}
+	</style>
+</head>
+
+<body>
+
+<!--HEADER-->
+
+<div id="header">
+    <div class="container">
+    	<span id="title">Public Transit in the United States</span><br>
+    	<span id="subtitle">An overview on ridership, mode share and funding statistics</span>
+	</div>
+</div>
+
+<!-- LEFT --> 
+  <div id="sidebar-left">	
+ 	<ul>
+  		<br>
+  		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/about.html" style="font-size:14px">About</a></li>
+  		<br>
+  		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/index.html" style="font-size:14px">Ridership & Funding</a></li>
+  		<br>
+  		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/mode-share.html" style="font-size:14px">Mode Share</a></li>
+  		<br>
+  		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/sprawling.html" style="font-size:14px">Sprawling Index</a></li>
+  		<br>
+  		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/help.html" style="font-size:14px">Help</a></li>
+  		<br>
+  		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/sources.html" style="font-size:14px">Data Sources</a></li>
+  	</ul>
+  </div>
+	
+<!-- MIDDLE -->
+  <div id="map" class="map">
+  	<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.33.1/mapbox-gl.js"></script>
+  </div>
+	
+<!-- RIGHT --> 
+  <div id="sidebar-right">
+  	<ul>
+		<span id="page-title">Change in Public Transit Ridership 2008-2016</span>
+		<br><span id="content-right"><em>in Urbanized Areas (UZAs) with over 500,000 population</em></span><br>
+  		<div id='pd' style="font-size:14px"></div>
+  	</ul>
+  </div>
+  <div class="legend" id='legend'></div>
+  
+<!-- FOOTER -->
+ 
+</body>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoianVzdHlpbSIsImEiOiJjaXVoNXB1YncwMDN5MnlxbDczbTc0YTRtIn0.LwgmMbs0c0grWfA2-oXD0Q';
+// This adds the map to your page
+var map = new mapboxgl.Map({
+  // container id specified in the HTML
+  container: 'map',
+  // style URL
+  style: 'mapbox://styles/justyim/cj07g1nps00042sn2wwlczxdb',
+  // initial position in [long, lat] format
+  center: [-96.7344, 38],
+  // initial zoom
+  zoom: 3
+});
+	
+// Add zoom and rotation controls to the map.
+map.addControl(new mapboxgl.NavigationControl());
+	map.on('load', function() {
+  var layers = ['-61 - -33%', '-33 - -24%', '-24 - -13%', '-13 - 0%', '0%', '0% - 8%', '8 - 22%', '22 - 90%', '90 - 599%'];
+	layers.forEach(function(layer) {
+	  var color = map.getPaintProperty(layer, 'circle-color');
+	  var item = document.createElement('div');
+	  var key = document.createElement('span');
+	  key.className = 'legend-key';
+	  key.style.backgroundColor = color;
+
+	  var value = document.createElement('span');
+	  value.innerHTML = layer;
+	  item.appendChild(key);
+	  item.appendChild(value);
+	  legend.appendChild(item);
+	});
+	
+	map.on('mousemove', function(e) {
+  var states = map.queryRenderedFeatures(e.point, {
+    layers: layers
+  });
+
+  if (states.length > 0) {
+    document.getElementById('pd').innerHTML ='<h3><strong>' + states[0].properties.UZA_Name + '</strong></h3><p><strong>' + 'Percentage Change in Ridership:&nbsp</strong>'+ states[0].properties.Pc_3dp + '%</p><p><strong>Federal Funding for UZAs Received (FY2016):&nbsp' + '</strong>$' + states[0].properties.Funding_Received_FY2016 + '</p><p><strong>UZA Population (2010):&nbsp' + '</strong>' + states[0].properties.Pop_Den_Sq_mi + '&nbsppeople per mile'; 
+  } else {
+    document.getElementById('pd').innerHTML = '<p>Hover over a colored area</p>';
+  }
+});
+});	
+	
+</script>
+
+</html>

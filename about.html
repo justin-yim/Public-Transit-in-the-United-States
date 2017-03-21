@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="An overview on United States's public transit ridership, mode share and funding statistics">
+  	<meta name="keywords" content="public transit, mass transit, ridership, public transportation, TOD, transit-oriented development, car-oriented, sprawling, data visualization, data viz,infographic, interactive, mapbox, information is beautiful">
+  	<meta name="author" content="Justin Yim">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Public Transit in the United States</title>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.33.1/mapbox-gl.css" rel="stylesheet" />
+    <link rel="canonical" href="https://justin-yim.github.io/Public-Transit-in-the-United-States/index.html"/>
+	<style>
+	/* LAYOUT */
+		
+	body {
+		margin:0;
+		font: 12px Helvetica Neue;
+		font-weight: bold;
+		-webkit-font-smoothing: antialiased;
+	}
+		
+	#header {
+    	height: 50px;
+    	box-sizing: border-box;
+    	padding-top: 0px;
+    	padding-right: 30px;
+    	padding-bottom: 110px;
+    	padding-left: 80px;
+    	border-style: solid;
+    	border-width: 20px 0px 1px 0px;
+	}
+
+	.container{
+		margin:auto;
+		width: 100%;
+		left:0px;
+	}
+		
+	#sidebar-left{
+		float: left;
+		width:18%;
+		padding-left:40px;
+	}
+		
+	.map {
+		position: absolute;
+		left: 19%;
+		width: 61%;
+		top: 131px;
+		bottom: 0;
+		/*border-style: solid;*/
+		/*border-width: 0px 1px 0px 1px;*/
+	}
+		
+	#sidebar-right{
+		float: right;
+		width:20.5%;
+		font-size: 20px;
+	}
+	
+	#legend{
+		font-size:14px;
+  		line-height: 18px;
+	}
+		
+	#pd{
+		font-size:14px;
+	}
+		
+	.legend{
+		position: fixed;
+    	bottom: 20px;
+    	right: 3.59%;
+    	width: 200px;
+    	background-color: rgba(255, 255, 255, 0.8);
+	}	
+		
+	.legend-key {
+  		display: inline-block;
+  		border-radius: 20%;
+  		width: 10px;
+ 		height: 10px;
+  		margin-right: 5px;
+	}	
+		
+	/* TEXT */
+	#title{
+		font-size: 65px;
+		font-family: "Helvetica Neue", sans-serif;
+		color: #000000; 
+	}
+
+	#subtitle{
+		font-size: 20px;
+	}
+
+	#page-title{
+		font-size:18px;	
+	}
+		
+	#textbox{
+		float:left;
+		width:704px;
+		line-height: 20px
+	}	
+		
+	#content-right{
+		font-size:12px;	
+	}
+		
+	a:visited, a:link{ 
+    	color: #000000;
+    	text-decoration: none;
+    	cursor: auto;
+	}
+	a:active, a:hover{ 
+    	color: #d25c4d;
+    	text-decoration: underline;
+    	cursor: auto;
+	}
+	
+	/* NAV */
+
+	ul{
+	}
+
+	li {
+		list-style: none;
+		/* display: inline-block; */
+	}
+	</style>
+</head>
+
+<body>
+
+<!--HEADER-->
+
+<div id="header">
+    <div class="container">
+    	<span id="title">Public Transit in the United States</span><br>
+    	<span id="subtitle">An overview on ridership, mode share and funding statistics</span>
+	</div>
+</div>
+
+<!-- LEFT --> 
+  <div id="sidebar-left">	
+ 	<ul>
+  		<br>
+  		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/about.html" style="font-size:14px">About</a></li>
+  		<br>
+  		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/index.html" style="font-size:14px">Ridership & Funding</a></li>
+  		<br>
+  		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/mode-share.html" style="font-size:14px">Mode Share</a></li>
+  		<br>
+  		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/sprawling.html" style="font-size:14px">Sprawling Index</a></li>
+  		<br>
+  		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/help.html" style="font-size:14px">Help</a></li>
+  		<br>
+  		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/sources.html" style="font-size:14px">Data Sources</a></li>
+  	</ul>
+  </div>
+	
+<!-- MIDDLE -->
+	<div id="textbox">
+ 		<br>
+  		<h2>About this project</h2>
+  		<p>The United States is one of the most car-oriented society in the world. The car culture has been particularly perpetuated by the unrestricted, low-density sprawling development into the countryside since post-war period. With the building of the Interstate Highway system since the 1950s, public transit usage declined and has been constantly underfunded. It also carries a stigma of which "only the poor people uses it".</p>
+  	
+  		<p>Nevertheless, since the last decade, public transit has started to revive in many major cities. Ridership began to rise again gradually, and many cities even <a href="https://www.citylab.com/transportation/2016/11/on-tuesday-night-transit-was-victorious/507077/">voted to increase funding for their mass transit systems</a>. As a result, I am really interested to find out about the percentage change of public transit ridership in major cities for the past eight years (during Obama administration), and to see their linkage between their level of sprawling, mode share percentage and federal funding received, etc.</p>
+  	
+  		<p>This project is an assignment for <a href="http://www.datadesignpenn.com/">FNAR-337 Information and Data Visualization, University of Pennsylvania.</a></p>
+   		<p>Thanks to Amy Lanza and my instructor David Comberg for their guidance.</p>
+   		<br>
+   		<p>Produced by Justin Yim (CC-BY-SA, 2017). Learn more about me <a href="https://justinyim.myportfolio.com">here</a>.</p>
+	</div>
+		
+<!-- RIGHT --> 
+  
+<!-- FOOTER -->
+ 
+</body>
+
+<script>
+
+</script>
+
+</html>
