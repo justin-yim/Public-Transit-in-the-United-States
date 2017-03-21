@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Public Transit in the United States</title>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.33.1/mapbox-gl.css" rel="stylesheet" />
+	<style>
+	/* LAYOUT */
+		
+	body {
+		margin:0;
+		font: 12px Helvetica Neue;
+		font-weight: bold;
+		-webkit-font-smoothing: antialiased;
+	}
+		
+	#header {
+    	height: 50px;
+    	box-sizing: border-box;
+    	padding-top: 0px;
+    	padding-right: 30px;
+    	padding-bottom: 110px;
+    	padding-left: 80px;
+    	border-style: solid;
+    	border-width: 20px 0px 1px 0px;
+	}
+
+	.container{
+		margin:auto;
+		width: 100%;
+		left:0px;
+	}
+		
+	#sidebar-left{
+		float: left;
+		width:18%;
+		padding-left:40px;
+	}
+
+	.map {
+		position: absolute;
+		left: 19%;
+		width: 65%;
+		top: 131px;
+		bottom: 0;
+		/*border-style: solid;*/
+		/*border-width: 0px 1px 0px 1px;*/
+	}
+		
+	#sidebar-right{
+		float: right;
+		width:17%;
+	}
+	/* TEXT */
+	#title{
+		font-size: 65px;
+		font-family: "Helvetica Neue", sans-serif;
+		color: #000000; 
+	}
+
+	#subtitle{
+		font-size: 20px;
+	}
+		
+	a:visited, a:link{ 
+    	color: #000000;
+    	text-decoration: none;
+    	cursor: auto;
+	}
+	a:active, a:hover{ 
+    	color: #d25c4d;
+    	text-decoration: underline;
+    	cursor: auto;
+	}
+	
+	/* NAV */
+
+	ul{
+	}
+
+	li {
+		list-style: none;
+		/* display: inline-block; */
+		color: dimgrey;
+	}
+	</style>
+</head>
+
+<body>
+
+<!--HEADER-->
+
+<div id="header">
+    <div class="container">
+    	<span id="title">Public Transit in the United States</span><br>
+    	<span id="subtitle">An overview on ridership, mode share and funding statistics</span>
+	</div>
+</div>
+
+<!-- LEFT --> 
+  <div id="sidebar-left">	
+ 	<ul>
+  		<br>
+  		<li><a href="#" style="font-size:14px">About</a></li>
+  		<br>
+  		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/" style="font-size:14px">Public Transit Ridership</a></li>
+  		<br>
+  		<li><a href="#" style="font-size:14px">Mode Share</a></li>
+  		<br>
+  		<li><a href="#" style="font-size:14px">Sprawling Index</a></li>
+  		<br>
+  		<li><a href="#" style="font-size:14px">Help</a></li>
+  		<br>
+  		<li><a href="#" style="font-size:14px">Sources</a></li>
+  	</ul>
+  </div>
+	
+<!-- MIDDLE -->
+  <div id="map" class="map">
+  	<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.33.1/mapbox-gl.js"></script>
+  </div>
+	
+<!-- RIGHT --> 
+  <div id="sidebar-right">
+  	<ul>
+  		<br>
+  		<li><a href="#" style="font-size:14px"></a></li>
+  	</ul>
+  </div>
+  
+<!-- FOOTER -->
+  <div id="footer">	
+  </div>
+ 
+</body>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoianVzdHlpbSIsImEiOiJjaXVoNXB1YncwMDN5MnlxbDczbTc0YTRtIn0.LwgmMbs0c0grWfA2-oXD0Q';
+// This adds the map to your page
+var map = new mapboxgl.Map({
+  // container id specified in the HTML
+  container: 'map',
+  // style URL
+  style: 'mapbox://styles/justyim/cj0ipqy0s006n2sqpod646p0u',
+  // initial position in [long, lat] format
+  center: [-97.7344, 38],
+  // initial zoom
+  zoom: 3
+});
+	
+// Add zoom and rotation controls to the map.
+map.addControl(new mapboxgl.NavigationControl());
+</script>
+
+</html>
