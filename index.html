@@ -50,7 +50,7 @@
 	#sidebar-right{
 		float: right;
 		width:20.5%;
-		font-size: 20px;
+		font-size: 16px;
 	}
 	
 	#legend{
@@ -158,7 +158,7 @@
   <div id="sidebar-right">
   	<ul>
 		<span id="page-title">Change in Public Transit Ridership 2008-2016</span>
-		<br><span id="content-right">in urbanized area with over 500,000 population</span><br><br>
+		<br><span id="content-right"><em>in Urbanized Areas (UZAs) with over 500,000 population</em></span><br>
   		<div id='pd' style="font-size:14px"></div>
   	</ul>
   </div>
@@ -184,11 +184,10 @@ var map = new mapboxgl.Map({
 	
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
-	
-map.on('load', function() {
-  var layers = ['25-49', '49-68', '68-79', '79-89', '89-100', '100-109', '109-118', '118-130', '130-150', '150-203'];
+	map.on('load', function() {
+  var layers = ['-61 - -33%', '-33 - -24%', '-24 - -13%', '-13 - 0%', '0%', '0% - 8%', '8 - 22%', '22 - 90%', '90 - 599%'];
 	layers.forEach(function(layer) {
-	  var color = map.getPaintProperty(layer, 'fill-color');
+	  var color = map.getPaintProperty(layer, 'circle-color');
 	  var item = document.createElement('div');
 	  var key = document.createElement('span');
 	  key.className = 'legend-key';
@@ -207,7 +206,7 @@ map.on('load', function() {
   });
 
   if (states.length > 0) {
-    document.getElementById('pd').innerHTML ='<h3><strong>' + states[0].properties._Name + '</strong></h3><p><strong>' + 'Sprawling Index: </strong>' + states[0].properties._composite + '</p><p><strong>' + 'Population (2015): </strong>' + states[0].properties.POP_2015;
+    document.getElementById('pd').innerHTML ='<h3><strong>' + states[0].properties.UZA_Name + '</strong></h3><p><strong>' + 'Percentage Change in Ridership:&nbsp</strong>'+ states[0].properties.Pc_3dp + '%</p><p><strong>Federal Funding for UZAs Received (FY2016):&nbsp' + '</strong>$' + states[0].properties.Funding_Received_FY2016 + '</p><p><strong>UZA Population (2010):&nbsp' + '</strong>' + states[0].properties.Pop_Den_Sq_mi + '&nbsppeople per mile'; 
   } else {
     document.getElementById('pd').innerHTML = '<p>Hover over a colored area</p>';
   }
