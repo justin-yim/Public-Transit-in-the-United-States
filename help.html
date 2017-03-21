@@ -37,45 +37,16 @@
 		padding-left:40px;
 	}
 		
-	.map {
-		position: absolute;
-		left: 19%;
-		width: 61%;
-		top: 131px;
-		bottom: 0;
-		/*border-style: solid;*/
-		/*border-width: 0px 1px 0px 1px;*/
-	}
-		
 	#sidebar-right{
 		float: right;
 		width:20.5%;
 		font-size: 20px;
 	}
 	
-	#legend{
-		font-size:14px;
-  		line-height: 18px;
-	}
-		
-	#pd{
-		font-size:14px;
-	}
-		
-	.legend{
-		position: fixed;
-    	bottom: 20px;
-    	right: 3.59%;
-    	width: 200px;
-    	background-color: rgba(255, 255, 255, 0.8);
-	}	
-		
-	.legend-key {
-  		display: inline-block;
-  		border-radius: 20%;
-  		width: 10px;
- 		height: 10px;
-  		margin-right: 5px;
+	#textbox{
+		float:left;
+		width:704px;
+		line-height: 20px
 	}	
 		
 	/* TEXT */
@@ -150,70 +121,29 @@
   </div>
 	
 <!-- MIDDLE -->
-  <div id="map" class="map">
-  	<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.33.1/mapbox-gl.js"></script>
-  </div>
-	
+	<div id="textbox">
+ 	<br>
+  	<h2>What is Sprawling Index?</h2>
+  	<p><strong>Sprawling</strong> means the expansion of settlements away from central urban areas into low-density, monofunctional and usually car-dependent communities. Throughout the past century, the difference between these sprawling and compact development strategies have been affecting the lives of millions of Americans.</p>
+  	
+  	<p>Since 2002, <a href="https://smartgrowthamerica.org/"><strong>Smart Growth America</strong></a> having been measuring and analyzing sprawling patterns in the US and its impact. Their <a href="https://smartgrowthamerica.org/resources/measuring-sprawl-2014/"><em>Measuring Sprawl 2014</em></a> report shows the sprawling situations in 221 metropolitan areas and 994 counties in the United States as of 2010, looking to see which communities are more compact and connected and which are more sprawling.</p>
+  	
+  	<p>Researchers used four primary factors - </p>
+  	<p>&nbsp&nbsp&nbsp 1. residential and employment density;</p>
+  	<p>&nbsp&nbsp&nbsp 2. neighborhood mix of homes, jobs and services</p>
+  	<p>&nbsp&nbsp&nbsp 3. strength of activity centers and downtowns; and </p>
+  	<p>&nbsp&nbsp&nbsp 4. accessibility of the street network</p>
+  	<p>to evaluate development in these areas and assign a Sprawl Index score to each. This report includes a list of the most compact and most sprawling metro areas in the country.</p>
+  	<p>Learn more from <a href="https://smartgrowthamerica.org/">their website</a></p>
+  	</div>
+  	
 <!-- RIGHT --> 
-  <div id="sidebar-right">
-  	<ul>
-		<span id="page-title">Sprawling Index 2014</span>
-		<br><a href="#" id="content-right"><em>What is Sprawling Index?</em></a><br><br>
-  		<div id='pd' style="font-size:14px"></div>
-  	</ul>
-  </div>
-  <div class="legend" id='legend'></div>
   
 <!-- FOOTER -->
  
 </body>
 
 <script>
-mapboxgl.accessToken = 'pk.eyJ1IjoianVzdHlpbSIsImEiOiJjaXVoNXB1YncwMDN5MnlxbDczbTc0YTRtIn0.LwgmMbs0c0grWfA2-oXD0Q';
-// This adds the map to your page
-var map = new mapboxgl.Map({
-  // container id specified in the HTML
-  container: 'map',
-  // style URL
-  style: 'mapbox://styles/justyim/cj0ipqy0s006n2sqpod646p0u',
-  // initial position in [long, lat] format
-  center: [-96.7344, 38],
-  // initial zoom
-  zoom: 3
-});
-	
-// Add zoom and rotation controls to the map.
-map.addControl(new mapboxgl.NavigationControl());
-	
-map.on('load', function() {
-  var layers = ['25-49', '49-68', '68-79', '79-89', '89-100', '100-109', '109-118', '118-130', '130-150', '150-203'];
-	layers.forEach(function(layer) {
-	  var color = map.getPaintProperty(layer, 'fill-color');
-	  var item = document.createElement('div');
-	  var key = document.createElement('span');
-	  key.className = 'legend-key';
-	  key.style.backgroundColor = color;
-
-	  var value = document.createElement('span');
-	  value.innerHTML = layer;
-	  item.appendChild(key);
-	  item.appendChild(value);
-	  legend.appendChild(item);
-	});
-	
-	map.on('mousemove', function(e) {
-  var states = map.queryRenderedFeatures(e.point, {
-    layers: layers
-  });
-
-  if (states.length > 0) {
-    document.getElementById('pd').innerHTML ='<h3><strong>' + states[0].properties._Name + '</strong></h3><p><strong>' + 'Sprawling Index: </strong>' + states[0].properties._composite + '</p><p><strong>' + 'Population (2015): </strong>' + states[0].properties.POP_2015;
-  } else {
-    document.getElementById('pd').innerHTML = '<p>Hover over a colored area</p>';
-  }
-});
-});	
-	
 </script>
 
 </html>

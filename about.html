@@ -150,70 +150,15 @@
   </div>
 	
 <!-- MIDDLE -->
-  <div id="map" class="map">
-  	<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.33.1/mapbox-gl.js"></script>
-  </div>
 	
 <!-- RIGHT --> 
-  <div id="sidebar-right">
-  	<ul>
-		<span id="page-title">Sprawling Index 2014</span>
-		<br><a href="#" id="content-right"><em>What is Sprawling Index?</em></a><br><br>
-  		<div id='pd' style="font-size:14px"></div>
-  	</ul>
-  </div>
-  <div class="legend" id='legend'></div>
   
 <!-- FOOTER -->
  
 </body>
 
 <script>
-mapboxgl.accessToken = 'pk.eyJ1IjoianVzdHlpbSIsImEiOiJjaXVoNXB1YncwMDN5MnlxbDczbTc0YTRtIn0.LwgmMbs0c0grWfA2-oXD0Q';
-// This adds the map to your page
-var map = new mapboxgl.Map({
-  // container id specified in the HTML
-  container: 'map',
-  // style URL
-  style: 'mapbox://styles/justyim/cj0ipqy0s006n2sqpod646p0u',
-  // initial position in [long, lat] format
-  center: [-96.7344, 38],
-  // initial zoom
-  zoom: 3
-});
-	
-// Add zoom and rotation controls to the map.
-map.addControl(new mapboxgl.NavigationControl());
-	
-map.on('load', function() {
-  var layers = ['25-49', '49-68', '68-79', '79-89', '89-100', '100-109', '109-118', '118-130', '130-150', '150-203'];
-	layers.forEach(function(layer) {
-	  var color = map.getPaintProperty(layer, 'fill-color');
-	  var item = document.createElement('div');
-	  var key = document.createElement('span');
-	  key.className = 'legend-key';
-	  key.style.backgroundColor = color;
 
-	  var value = document.createElement('span');
-	  value.innerHTML = layer;
-	  item.appendChild(key);
-	  item.appendChild(value);
-	  legend.appendChild(item);
-	});
-	
-	map.on('mousemove', function(e) {
-  var states = map.queryRenderedFeatures(e.point, {
-    layers: layers
-  });
-
-  if (states.length > 0) {
-    document.getElementById('pd').innerHTML ='<h3><strong>' + states[0].properties._Name + '</strong></h3><p><strong>' + 'Sprawling Index: </strong>' + states[0].properties._composite + '</p><p><strong>' + 'Population (2015): </strong>' + states[0].properties.POP_2015;
-  } else {
-    document.getElementById('pd').innerHTML = '<p>Hover over a colored area</p>';
-  }
-});
-});	
-	
 </script>
 
 </html>
