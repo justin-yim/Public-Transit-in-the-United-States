@@ -157,8 +157,8 @@
 <!-- RIGHT --> 
   <div id="sidebar-right">
   	<ul>
-		<span id="page-title">Sprawling Index 2014</span>
-		<br><a href="#" id="content-right"><em>What is Sprawling Index?</em></a><br><br>
+		<span id="page-title">Public Transit - Mode Share</span>
+		<br><a href="#" id="content-right"><em>percentage of workers over 16 years old using public transit as regular means of transportation</em></a><br>
   		<div id='pd' style="font-size:14px"></div>
   	</ul>
   </div>
@@ -175,7 +175,7 @@ var map = new mapboxgl.Map({
   // container id specified in the HTML
   container: 'map',
   // style URL
-  style: 'mapbox://styles/justyim/cj0ipqy0s006n2sqpod646p0u',
+  style: 'mapbox://styles/justyim/cj0jdi9nk006l2sqpox859d5q',
   // initial position in [long, lat] format
   center: [-96.7344, 38],
   // initial zoom
@@ -184,9 +184,9 @@ var map = new mapboxgl.Map({
 	
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
-	
+
 map.on('load', function() {
-  var layers = ['25-49', '49-68', '68-79', '79-89', '89-100', '100-109', '109-118', '118-130', '130-150', '150-203'];
+  var layers = ['0.00-4.40%', '4.40-8.80%', '8.80-13.20%', '13.20-17.60%', '17.60-22.00%', '22.00-26.40%', '26.40-30.80%'];
 	layers.forEach(function(layer) {
 	  var color = map.getPaintProperty(layer, 'fill-color');
 	  var item = document.createElement('div');
@@ -207,13 +207,12 @@ map.on('load', function() {
   });
 
   if (states.length > 0) {
-    document.getElementById('pd').innerHTML ='<h3><strong>' + states[0].properties._Name + '</strong></h3><p><strong>' + 'Sprawling Index: </strong>' + states[0].properties._composite + '</p><p><strong>' + 'Population (2015): </strong>' + states[0].properties.POP_2015;
+    document.getElementById('pd').innerHTML ='<h3><strong>' + states[0].properties.NAME + '</strong></h3><p><strong>' + 'Workers over 16 years old:&nbsp</strong>' + states[0].properties._Workers_o + '</p><p><strong>Public Transit:&nbsp' + '</strong>' + states[0].properties._Public_tr + '%</p><p><strong>Car/Truck/Van:&nbsp' + '</strong>' + states[0].properties._Car_truck + '%</p><p><strong>Bicycle:&nbsp' + '</strong>' + states[0].properties._Bicycle + '%</p><p><strong>Walk:&nbsp' + '</strong>' + states[0].properties._Walked +'%</p><p><strong>Taxi, Motorcycle or Others:&nbsp' + '</strong>' + states[0].properties._Taxicab_m + '%'; 
   } else {
     document.getElementById('pd').innerHTML = '<p>Hover over a colored area</p>';
   }
 });
 });	
-	
 </script>
 
 </html>
