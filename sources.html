@@ -36,47 +36,16 @@
 		width:18%;
 		padding-left:40px;
 	}
-		
-	.map {
-		position: absolute;
-		left: 19%;
-		width: 61%;
-		top: 131px;
-		bottom: 0;
-		/*border-style: solid;*/
-		/*border-width: 0px 1px 0px 1px;*/
-	}
-		
+	
 	#sidebar-right{
 		float: right;
 		width:20.5%;
 		font-size: 20px;
 	}
-	
-	#legend{
-		font-size:14px;
-  		line-height: 18px;
-	}
 		
 	#pd{
 		font-size:14px;
 	}
-		
-	.legend{
-		position: fixed;
-    	bottom: 20px;
-    	right: 3.59%;
-    	width: 200px;
-    	background-color: rgba(255, 255, 255, 0.8);
-	}	
-		
-	.legend-key {
-  		display: inline-block;
-  		border-radius: 20%;
-  		width: 10px;
- 		height: 10px;
-  		margin-right: 5px;
-	}	
 		
 	/* TEXT */
 	#title{
@@ -92,6 +61,12 @@
 	#page-title{
 		font-size:18px;	
 	}
+		
+	#textbox{
+		float:left;
+		width:704px;
+		line-height: 20px
+	}	
 		
 	#content-right{
 		font-size:12px;	
@@ -150,70 +125,30 @@
   </div>
 	
 <!-- MIDDLE -->
-  <div id="map" class="map">
-  	<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.33.1/mapbox-gl.js"></script>
-  </div>
-	
+	<div id="textbox">
+ 		<br>
+  		<h2>Sources</h2>
+  		<h3>Ridership & Funding</h3>
+  		<p>Data: <a href="https://www.transit.dot.gov/ntd/data-product/monthly-module-adjusted-data-release">Monthly Module Adjusted Data Release (National Transit Database)</a>,
+  		<p><a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwi34aXO0-fSAhVG4yYKHZ-cCkEQFggcMAA&url=https%3A%2F%2Fwww.transit.dot.gov%2Fsites%2Ffta.dot.gov%2Ffiles%2Fdocs%2FFY_16_Apportionment_Table_3.xlsx&usg=AFQjCNHxSPmrl2quB3BGDICHa3K8Y9ys_A&sig2=aYexm1PaI75VTfndmdmibw">FY 16 Apportionment Table 3 (Federal Transit Administration)</a></p>
+  		<h3>Mode Share</h3>
+  		<p>Data: <a href="https://factfinder.census.gov/faces/tableservices/jsf/pages/productview.xhtml?pid=ACS_15_5YR_S0801&prodType=table">Commutung Characteristics by Sex, 2011-2015 American Community Survey 5-Year Estimates</a></p>
+  		<h3>Sprawling Index</h3>
+  		<p>Data: <a href="https://gis.cancer.gov/tools/urban-sprawl/">Updated Urban Sprawl Data for the United State, National Cancer Institute (Dr. Reid Ewing)</a>,</p>
+  		<p><a href="https://smartgrowthamerica.org/resources/measuring-sprawl-2014/"><em>Measuring Sprawl 2014</em>, Smart Growth America</a></p>
+  		<br>
+ 		<h3>Acknowledgement</h3>
+  		<p>Interactive Maps in this website were made with <a href="https://www.mapbox.com">Mapbox</a></p>
+  		<p>Shapefile: <a href="https://www.census.gov/geo/maps-data/data/tiger.html">TIGER, US Census</a></p>
+   		<br>
+	</div>
 <!-- RIGHT --> 
-  <div id="sidebar-right">
-  	<ul>
-		<span id="page-title">Sprawling Index 2014</span>
-		<br><a href="#" id="content-right"><em>What is Sprawling Index?</em></a><br><br>
-  		<div id='pd' style="font-size:14px"></div>
-  	</ul>
-  </div>
-  <div class="legend" id='legend'></div>
   
 <!-- FOOTER -->
  
 </body>
 
 <script>
-mapboxgl.accessToken = 'pk.eyJ1IjoianVzdHlpbSIsImEiOiJjaXVoNXB1YncwMDN5MnlxbDczbTc0YTRtIn0.LwgmMbs0c0grWfA2-oXD0Q';
-// This adds the map to your page
-var map = new mapboxgl.Map({
-  // container id specified in the HTML
-  container: 'map',
-  // style URL
-  style: 'mapbox://styles/justyim/cj0ipqy0s006n2sqpod646p0u',
-  // initial position in [long, lat] format
-  center: [-96.7344, 38],
-  // initial zoom
-  zoom: 3
-});
-	
-// Add zoom and rotation controls to the map.
-map.addControl(new mapboxgl.NavigationControl());
-	
-map.on('load', function() {
-  var layers = ['25-49', '49-68', '68-79', '79-89', '89-100', '100-109', '109-118', '118-130', '130-150', '150-203'];
-	layers.forEach(function(layer) {
-	  var color = map.getPaintProperty(layer, 'fill-color');
-	  var item = document.createElement('div');
-	  var key = document.createElement('span');
-	  key.className = 'legend-key';
-	  key.style.backgroundColor = color;
-
-	  var value = document.createElement('span');
-	  value.innerHTML = layer;
-	  item.appendChild(key);
-	  item.appendChild(value);
-	  legend.appendChild(item);
-	});
-	
-	map.on('mousemove', function(e) {
-  var states = map.queryRenderedFeatures(e.point, {
-    layers: layers
-  });
-
-  if (states.length > 0) {
-    document.getElementById('pd').innerHTML ='<h3><strong>' + states[0].properties._Name + '</strong></h3><p><strong>' + 'Sprawling Index: </strong>' + states[0].properties._composite + '</p><p><strong>' + 'Population (2015): </strong>' + states[0].properties.POP_2015;
-  } else {
-    document.getElementById('pd').innerHTML = '<p>Hover over a colored area</p>';
-  }
-});
-});	
-	
 </script>
 
 </html>
