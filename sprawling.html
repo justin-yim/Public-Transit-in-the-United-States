@@ -40,7 +40,7 @@
 	.map {
 		position: absolute;
 		left: 19%;
-		width: 65%;
+		width: 61%;
 		top: 131px;
 		bottom: 0;
 		/*border-style: solid;*/
@@ -49,7 +49,7 @@
 		
 	#sidebar-right{
 		float: right;
-		width:17%;
+		width:20%;
 	}
 	/* TEXT */
 	#title{
@@ -103,7 +103,7 @@
   		<br>
   		<li><a href="#" style="font-size:14px">About</a></li>
   		<br>
-  		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/" style="font-size:14px">Public Transit Ridership</a></li>
+  		<li><a href="https://justin-yim.github.io/Public-Transit-in-the-United-States/" style="font-size:14px">Ridership & Funding</a></li>
   		<br>
   		<li><a href="#" style="font-size:14px">Mode Share</a></li>
   		<br>
@@ -123,8 +123,7 @@
 <!-- RIGHT --> 
   <div id="sidebar-right">
   	<ul>
-  		<br>
-  		<li><a href="#" style="font-size:14px"></a></li>
+  		<div class='map-overlay' id='features'><h2>US population density</h2><div id='pd'><p>Hover over a state!</p></div></div>
   	</ul>
   </div>
   
@@ -143,7 +142,7 @@ var map = new mapboxgl.Map({
   // style URL
   style: 'mapbox://styles/justyim/cj0ipqy0s006n2sqpod646p0u',
   // initial position in [long, lat] format
-  center: [-97.7344, 38],
+  center: [-96.7344, 38],
   // initial zoom
   zoom: 3
 });
